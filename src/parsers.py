@@ -1,12 +1,24 @@
 import feedparser
-import urllib
 import datetime
+import requests
+import time
 
 
 class BaseParser():
    """
    Base class for parsers
+
+   Parameters
+   ----------
+   waiting_time : int or float
+         Waiting time for response for request (in seconds)
+
+   timeout_between_requests : int or float
+         Time to wait between requests (in seconds
    """
+   def __init__(self, waiting_time, timeout_between_requests):
+      self.waiting_time = waiting_time
+      self.timeout_between_requests = timeout_between_requests
 
    def step(self, it, url, source, config, fields, log_fields):
       """
@@ -83,6 +95,7 @@ class BaseParser():
          data_, log_ = self.step(it, url, sources[it], configs[it], fields, log_fields)
          data = self.append(data, data_)
          log = self.append(log, log_)
+         time.sleep(self.timeout_between_requests)
 
       log_txt = self.reform_log(log)
       log['TIME'] = [datetime.datetime.now() for _ in range(len(urls))]
@@ -126,12 +139,14 @@ class BaseParser():
       -------
       out_log : list of strings
       """
+
       out_log = ['=' * 100,
                  f'TIME: {datetime.datetime.now()}']
       keys = list(log.keys())
       L1 = [len(str(key)) for key in log.keys()]
-      L2 = [max([len(v) for v in values]) for values in log.values()]
+      L2 = [max([len(v) for v in values] + [0]) for values in log.values()]
       L = [max(l1, l2)+2 for (l1, l2) in zip(L1, L2)]
+
       separator = "+"+'+'.join(['-'*l for l in L]) + '+'
       out_log.append(separator)
       string = ''
@@ -159,41 +174,43 @@ class RSSParser(BaseParser):
    """
    Class for parsing RSS feeds
    """
-   def __init__(self):
-      super(RSSParser).__init__()
+   def __init__(self, **kwargs):
+      super().__init__(**kwargs)
 
    def step(self, it, url, source, config, fields, log_fields):
       data = dict(zip(fields, [[] for _ in range(len(fields))]))
-      log = dict(zip(log_fields, [[] for _ in range(len(log_fields))]))
+      log = dict(zip(log_fields, [[''] for _ in range(len(log_fields))]))
 
-      log['source'].append(source)
+      log['source'][0] = source
+
       try:
-         fp = feedparser.parse(url)
-         log['STATUS_CODE'].append(str(fp['status']))
-         log['ERROR'].append('')
-      except urllib.error.HTTPError as e:
-         log['ERROR'].append(str(e))
-      except urllib.error.URLError as e:
-         log['ERROR'][-1] += str(e.reason)
+         response = requests.get(url, timeout=self.waiting_time)
+         if f'{response.status_code}'[0] not in ['4', '5']:
+            fp = feedparser.parse(url)
+            log['STATUS_CODE'][0] = str(fp['status'])
+            for i in fp['entries']:
+               data['title'].append(i[config['title_tag']])
+               try:
+                  data['summary'].append(i[config['summary_tag']])
+               except:
+                  data['summary'].append(None)
+               date = i[config['date_tag']]
+               data['date'].append(f'{date.tm_year}-{date.tm_mon}-{date.tm_mday}')
+               data['link'].append(i[config['link_tag']])
+               try:
+                  data['type'].append(i["tags"][0][config['type_tag']])
+               except:
+                  data['type'].append(None)
+            data['source'] = [source for _ in range(len(data['title']))]
+            data['date_parsed'] = [datetime.datetime.now() for _ in range(len(data['title']))]
+            for key in [f for f in log_fields if f not in ['STATUS_CODE', 'ERROR', 'source']]:
+               log[key][0] = str(len([1 for item in data[key] if item is not None]))
 
-      for i in fp['entries']:
-         data['title'].append(i[config['title_tag']])
-         try:
-            data['summary'].append(i[config['summary_tag']])
-         except:
-            data['summary'].append(None)
-         date = i[config['date_tag']]
-         data['date'].append(f'{date.tm_year}-{date.tm_mon}-{date.tm_mday}')
-         data['link'].append(i[config['link_tag']])
-         try:
-            data['type'].append(i["tags"][0][config['type_tag']])
-         except:
-            data['type'].append(None)
-      data['source'] = [source for _ in range(len(data['title']))]
-      data['date_parsed'] = [datetime.datetime.now() for _ in range(len(data['title']))]
+         else:
+            log['STATUS_CODE'][0] = f'{(response.status_code)}'
 
-      for key in [f for f in log_fields if f not in ['STATUS_CODE', 'ERROR', 'source']]:
-         log[key].append(str(len([1 for item in data[key] if item is not None])))
+      except Exception as e:
+         log['ERROR'][0] = str(e)
 
       return data, log
 

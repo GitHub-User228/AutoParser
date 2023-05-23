@@ -1,3 +1,23 @@
-source,STATUS_CODE,ERROR,title,summary,date,link,type,TIME
-ria,200,,100,0,100,100,100,2023-05-23 15:43:01.056946
-tass,200,,98,89,98,98,98,2023-05-23 15:43:01.056948
+source,STATUS_CODE,title,summary,date,link,type,ERROR,TIME
+ria,200,99,0,99,99,99,,2023-05-23 23:54:44.822121
+tass,200,100,99,100,100,100,,2023-05-23 23:54:44.822129
+rosbalt,200,100,100,100,100,100,,2023-05-23 23:54:44.822132
+ura,200,170,170,170,170,0,,2023-05-23 23:54:44.822135
+mail,200,20,20,20,20,20,,2023-05-23 23:54:44.822138
+regnum,200,100,100,100,100,100,,2023-05-23 23:54:44.822141
+izvestia,403,,,,,,,2023-05-23 23:54:44.822143
+lenta,200,200,200,200,200,200,,2023-05-23 23:54:44.822146
+kp,200,200,200,200,200,200,,2023-05-23 23:54:44.822149
+tvrain,,,,,,,"HTTPSConnectionPool(host='tvrain.tv', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822151
+mediazona,,,,,,,"HTTPSConnectionPool(host='zona.media', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822154
+interfax,200,25,25,25,25,25,,2023-05-23 23:54:44.822157
+vedomosti,200,200,200,200,200,188,,2023-05-23 23:54:44.822159
+aif,,,,,,,"HTTPSConnectionPool(host='aif.ru', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822162
+rg,200,100,100,100,100,0,,2023-05-23 23:54:44.822222
+argumenti,200,30,30,30,30,30,,2023-05-23 23:54:44.822230
+pravda,200,20,20,20,20,20,,2023-05-23 23:54:44.822233
+svoboda,,,,,,,"HTTPSConnectionPool(host='www.svoboda.org', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822236
+currenttime,,,,,,,"HTTPSConnectionPool(host='www.currenttime.tv', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822239
+meduza,,,,,,,"HTTPSConnectionPool(host='meduza.io', port=443): Read timed out. (read timeout=5)",2023-05-23 23:54:44.822242
+fontanka,200,30,30,30,30,30,,2023-05-23 23:54:44.822245
+rbc,200,30,30,30,30,30,,2023-05-23 23:54:44.822247

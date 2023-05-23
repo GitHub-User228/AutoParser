@@ -9,7 +9,7 @@ for job in my_cron:
     my_cron.remove(job)
 
 job = my_cron.new(command=f'python3 {dir_path}/collector.py')
-job.setall('0 * * * *')
+job.setall('* 0,3,6,9,12,15,18,21 * * *')
 my_cron.write()
 
 for job in my_cron:

@@ -1,0 +1,183 @@
+storage_path: /home/linuxuser/AutoParser/data
+data_filename: raw_data
+log_filename: log
+timeout_between_requests: 1
+waiting_time: 5
+data_fields:
+- title
+- summary
+- date
+- link
+- type
+- source
+- date_parsed
+log_fields:
+- source
+- STATUS_CODE
+- title
+- summary
+- date
+- link
+- type
+- ERROR
+parser_config:
+  date_tag:
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  link_tag:
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  summary_tag:
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - description
+  - summary
+  - summary
+  - description
+  - description
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  title_tag:
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  type_tag:
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+source|url:
+- - ria
+  - https://ria.ru/export/rss2/archive/index.xml
+- - tass
+  - https://tass.ru/rss/v2.xml
+- - rosbalt
+  - https://www.rosbalt.ru/feed/
+- - ura
+  - https://ura.news/rss
+- - mail
+  - https://news.mail.ru/rss/
+- - regnum
+  - https://regnum.ru/rss
+- - izvestia
+  - https://iz.ru/xml/rss/all.xml
+- - lenta
+  - https://lenta.ru/rss
+- - kp
+  - https://www.kp.ru/rss/allsections.xml
+- - tvrain
+  - https://tvrain.tv/export/rss/all.xml
+- - mediazona
+  - https://zona.media/rss
+- - interfax
+  - https://www.interfax.ru/rss.asp
+- - vedomosti
+  - https://www.vedomosti.ru/rss/articles
+- - aif
+  - https://aif.ru/rss/all.php
+- - rg
+  - https://rg.ru/xml/index.xml
+- - argumenti
+  - https://argumenti.ru/rss/argumenti_online.xml
+- - pravda
+  - https://www.pravda.ru/export-news.xml
+- - svoboda
+  - https://www.svoboda.org/api/
+- - currenttime
+  - https://www.currenttime.tv/api/
+- - meduza
+  - https://meduza.io/rss/all
+- - fontanka
+  - https://www.fontanka.ru/fontanka.rss
+- - rbc
+  - https://rssexport.rbc.ru/rbcnews/news/30/full.rss

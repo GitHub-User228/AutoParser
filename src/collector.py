@@ -1,45 +1,35 @@
 from parsers import RSSParser
 from transfer import save_as_csv, save_as_txt
+import yaml
 
-STORAGE_PATH = "/home/linuxuser/AutoParser/data"
-FILENAME = "raw_data"
-LOG_FILENAME = 'log'
+with open("configs.yaml", 'r') as f:
+    configs = yaml.safe_load(f)
 
-URLS = ["https://ria.ru/export/rss2/archive/index.xml",
-        'https://tass.ru/rss/v2.xml']
+PARSER_CONFIGS = [dict(zip(configs['parser_config'].keys(),
+                           [item[k] for item in configs['parser_config'].values()]))\
+                  for k in range(len(list(configs['parser_config'].values())[0]))]
 
-SOURCES = ['ria',
-           'tass']
 
-DEFAULT_CONFIG = {'title_tag': 'title',
-                  'summary_tag': 'summary',
-                  'date_tag': 'published_parsed',
-                  'link_tag': 'link',
-                  'type_tag': 'term'}
+parser = RSSParser(waiting_time=configs['waiting_time'],
+                   timeout_between_requests=configs['timeout_between_requests'])
 
-CONFIGS = [DEFAULT_CONFIG for _ in range(len(URLS))]
-
-FIELDS = ['title', 'summary', 'date', 'link', 'type', 'source', 'date_parsed']
-LOG_FILEDS = ['source', 'STATUS_CODE', 'ERROR', 'title', 'summary', 'date', 'link', 'type']
-
-parser = RSSParser()
-data, log_csv, log_txt = parser.search(urls=URLS,
-                                       sources=SOURCES,
-                                       configs=CONFIGS,
-                                       fields=FIELDS,
-                                       log_fields=LOG_FILEDS)
+data, log_csv, log_txt = parser.search(urls=[item[1] for item in configs['source|url']],
+                                       sources=[item[0] for item in configs['source|url']],
+                                       configs=PARSER_CONFIGS,
+                                       fields=configs['data_fields'],
+                                       log_fields=configs['log_fields'])
 
 save_as_csv(file=log_csv,
-            storage_path=STORAGE_PATH,
-            filename=LOG_FILENAME)
+            storage_path=configs['storage_path'],
+            filename=configs['log_filename'])
 
 save_as_txt(file=log_txt,
-            storage_path=STORAGE_PATH,
-            filename=LOG_FILENAME)
+            storage_path=configs['storage_path'],
+            filename=configs['log_filename'])
 
 save_as_csv(file=data,
-            storage_path=STORAGE_PATH,
-            filename=FILENAME)
+            storage_path=configs['storage_path'],
+            filename=configs['data_filename'])
 
 
 
