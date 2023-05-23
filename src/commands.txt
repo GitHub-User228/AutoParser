@@ -1,0 +1,25 @@
+# add yourself to the crontab group
+sudo usermod -a -G crontab linuxuser
+
+# вывести лог системы
+grep -i cron /var/log/syslog
+
+# view cron jobs on your system
+crontab -l
+
+# проверить запущен ли cron
+sudo service cron status
+
+# применить скрипт, который проверяет время следующего вызова jobs
+python3 checker.py
+
+# применить скрипт, который перезаписывает jobs
+python3 scheduler.py
+
+# остановить все установленные jobs
+sudo service cron stop
+
+# запустить все установленные jobs
+sudo service cron start
+
+PS: Это возможно не все команды, которые могут понадобиться
