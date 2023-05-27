@@ -22,4 +22,5 @@ sudo service cron stop
 # запустить все установленные jobs
 sudo service cron start
 
-PS: Это возможно не все команды, которые могут понадобиться
+# запушить данные в папку проекта
+cat <file> | sshpass -p <password> ssh -T <username>@gateway.st "kubectl exec --stdin -n <namespace> <pod> -- hdfs dfs -put -/project-dirs/2023-14000/<path_to_file>"
