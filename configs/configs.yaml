@@ -1,0 +1,259 @@
+username: linuxuser
+schedule: 0 0,2,4,6,8,10,12,14,16,18,20,22 * * *
+data_filename:
+  no_proxy: raw_data
+  proxy: raw_data_proxy
+log_filename:
+  no_proxy: log
+  proxy: log_proxy
+timeout_between_requests:
+  no_proxy: 2
+  proxy: 1
+waiting_time:
+  no_proxy: 20
+  proxy: 10
+number_of_tries:
+  no_proxy: 5
+  proxy: 2
+data_fields:
+- title
+- summary
+- date
+- link
+- type
+- source
+- date_parsed
+log_fields:
+- TRY
+- source
+- STATUS_CODE
+- title
+- summary
+- date
+- link
+- type
+- ERROR
+parser_type:
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- rss
+- thebell
+- rss
+parser_config:
+  date_tag:
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - published_parsed
+  - None
+  - published_parsed
+  link_tag:
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - link
+  - None
+  - link
+  summary_tag:
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - description
+  - summary
+  - summary
+  - description
+  - description
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - summary
+  - None
+  - summary
+  title_tag:
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - title
+  - None
+  - title
+  type_tag:
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - term
+  - None
+  - term
+source|url|requires_proxy:
+- - ria
+  - https://ria.ru/export/rss2/archive/index.xml
+  - False
+- - tass
+  - https://tass.ru/rss/v2.xml
+  - False
+- - rosbalt
+  - https://www.rosbalt.ru/feed/
+  - False
+- - ura
+  - https://ura.news/rss
+  - False
+- - mail
+  - https://news.mail.ru/rss/
+  - False
+- - regnum
+  - https://regnum.ru/rss
+  - False
+- - izvestia
+  - https://iz.ru/xml/rss/all.xml/
+  - False
+- - lenta
+  - https://lenta.ru/rss
+  - False
+- - kp
+  - https://www.kp.ru/rss/allsections.xml
+  - False
+- - tvrain
+  - https://tvrain.tv/export/rss/all.xml
+  - True
+- - mediazona
+  - https://zona.media/rss
+  - True
+- - interfax
+  - https://www.interfax.ru/rss.asp
+  - False
+- - vedomosti
+  - https://www.vedomosti.ru/rss/articles
+  - False
+- - aif
+  - https://aif.ru/rss/all.php
+  - False
+- - rg
+  - https://rg.ru/xml/index.xml
+  - False
+- - argumenti
+  - https://argumenti.ru/rss/argumenti_online.xml
+  - False
+- - pravda
+  - https://www.pravda.ru/export-news.xml
+  - False
+- - svoboda
+  - https://www.svoboda.org/api/
+  - True
+- - currenttime
+  - https://www.currenttime.tv/api/
+  - True
+- - meduza
+  - https://meduza.io/rss/all
+  - True
+- - fontanka
+  - https://www.fontanka.ru/fontanka.rss
+  - False
+- - rbc
+  - https://rssexport.rbc.ru/rbcnews/news/30/full.rss
+  - False
+- - thebell
+  - https://thebell.io/category/news
+  - True
+- - novyagazeta
+  - https://novayagazeta.eu/feed/rss
+  - True
