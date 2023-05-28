@@ -43,9 +43,9 @@ Here you can find an example of how to automate parsing process of news rss feed
 2. Modify [parsers.py](src/parsers.py)
     - create new custom method inside ``SubSteps`` class if there are urls with custom parser required
 3. Run commands
-    - ``sudo service cron stop`` - stops all jobs
-    - ``python3 scheduler.py`` - scheduling parsing job (and deleting previous jobs)
-    - ``sudo service cron start`` - starting parsing job
+    - ``sudo service cron stop`` - stop all jobs
+    - ``python3 scheduler.py`` - schedule parsing job (and deleting previous jobs)
+    - ``sudo service cron start`` - start parsing job
     - ``python3 checker.py`` - check the time when the next call will be made
 
-PS: run ``python3 collector.py`` in case you need to perform paring manually
+PS: run ``python3 collector.py`` in case you need to perform parsing manually
